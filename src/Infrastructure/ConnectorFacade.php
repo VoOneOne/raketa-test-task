@@ -7,16 +7,20 @@ namespace Raketa\BackendTestTask\Infrastructure;
 use Redis;
 use RedisException;
 
+# Имя класса, namespace не даёт понять, что мы подключаемся к Redis
+# В современных фреймворках есть возможность сконфигурировать подключение и передать его явно в конструктор как сервис.
+
 class ConnectorFacade
 {
     public string $host;
-    public int $port = 6379;
+    public int $port = 6379; # Зачем?
     public ?string $password = null;
     public ?int $dbindex = null;
 
     public $connector;
 
-    public function __construct($host, $port, $password, $dbindex)
+
+    public function __construct($host, $port, $password, $dbindex) # отсутствует описание типов
     {
         $this->host = $host;
         $this->port = $port;
@@ -26,6 +30,7 @@ class ConnectorFacade
 
     protected function build(): void
     {
+
         $redis = new Redis();
 
         try {

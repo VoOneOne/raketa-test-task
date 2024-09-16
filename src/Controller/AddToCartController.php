@@ -1,5 +1,7 @@
 <?php
 
+# Отсутвует объявление declare(strict_types = 1);
+
 namespace Raketa\BackendTestTask\Controller;
 
 use Psr\Http\Message\RequestInterface;
@@ -8,6 +10,7 @@ use Raketa\BackendTestTask\Domain\CartItem;
 use Raketa\BackendTestTask\Repository\CartManager;
 use Raketa\BackendTestTask\Repository\ProductRepository;
 use Raketa\BackendTestTask\View\CartView;
+use Ramsey\Uuid\Uuid; # Отсуствовало
 
 readonly class AddToCartController
 {
@@ -20,7 +23,9 @@ readonly class AddToCartController
 
     public function get(RequestInterface $request): ResponseInterface
     {
+        # Возможно будет брошено исключение \ValueError. Отсутвует обработка ошибки.
         $rawRequest = json_decode($request->getBody()->getContents(), true);
+        # Возможно обращение к несуществующему элементу массива.
         $product = $this->productRepository->getByUuid($rawRequest['productUuid']);
 
         $cart = $this->cartManager->getCart();

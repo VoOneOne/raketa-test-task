@@ -10,7 +10,7 @@ use Raketa\BackendTestTask\Repository\ProductRepository;
 readonly class CartView
 {
     public function __construct(
-        private ProductRepository $productRepository
+        private ProductRepository $productRepository # Неожиданная зависимость !!???
     ) {
     }
 
@@ -27,7 +27,7 @@ readonly class CartView
                 ]),
                 'email' => $cart->getCustomer()->getEmail(),
             ],
-            'payment_method' => $cart->getPaymentMethod(),
+            'payment_method' => $cart->getPaymentMethod(), # Отдельно от Customer !
         ];
 
         $total = 0;

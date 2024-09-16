@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Raketa\BackendTestTask\Repository\Entity;
 
+# В классе есть как минимум 2 уникальных идентификатора uuid и id !!!
 readonly class Product
 {
     public function __construct(

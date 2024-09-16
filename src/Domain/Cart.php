@@ -24,7 +24,7 @@ final class Cart
         return $this->customer;
     }
 
-    public function getPaymentMethod(): ?string
+    public function getPaymentMethod(): ?string # ошибочный возвращаемый тип
     {
         return $this->paymentMethod;
     }
